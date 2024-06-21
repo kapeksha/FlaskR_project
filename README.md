@@ -67,5 +67,5 @@ This is a simple TodoMVC API that allows you to create, read, update, and delete
     ```
 - **Get a swagger.json:**
    ```sh
-   http://127.0.0.1:5000/swagger.json
+   http://127.0.0.1:5000/swagger/
    ```
