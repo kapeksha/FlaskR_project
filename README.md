@@ -23,7 +23,7 @@ This is a simple TodoMVC API that allows you to create, read, update, and delete
 3. 
 3. **Install the dependencies**:
     ```sh
-    pip install -r requirements.txt
+    pip install -r Requirements.txt
     ```
 
 ## Running the Application
