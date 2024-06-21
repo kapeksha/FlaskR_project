@@ -17,17 +17,37 @@ todo = api.model('Todo', {
 
 
 class TodoDAO(object):
+    """
+    Data Access Object for managing the Todo list.
+    """
     def __init__(self):
+        """
+        Initializes the DAO with a counter and an empty list of todos.
+        """
         self.counter = 0
         self.todos = []
 
     def get(self, id):
+        """
+        Retrieves a todo by its ID.
+        
+        :param id: The ID of the todo to retrieve.
+        :return: The todo item with the given ID.
+        :raises: 404 error if the todo is not found.
+        """
         for todo in self.todos:
             if todo['id'] == id:
                 return todo
         api.abort(404, "Todo {} doesn't exist".format(id))
 
     def create(self, data):
+        """
+        Creates a new todo item.
+        
+        :param data: The data for the new todo.
+        :return: The created todo item.
+        :raises: 400 error if the 'task' field is not provided.
+        """
         if 'task' not in data:  # Manual check for the 'task' field
             api.abort(400, "The 'task' field is required.")
         todo = data
@@ -36,6 +56,14 @@ class TodoDAO(object):
         return todo
 
     def update(self, id, data):
+        """
+        Updates an existing todo item.
+        
+        :param id: The ID of the todo to update.
+        :param data: The updated data for the todo.
+        :return: The updated todo item.
+        :raises: 400 error if the 'task' field is not provided.
+        """
         if 'task' not in data:  # Manual check for the 'task' field
             api.abort(400, "The 'task' field is required.")
         todo = self.get(id)
@@ -43,6 +71,12 @@ class TodoDAO(object):
         return todo
 
     def delete(self, id):
+        """
+        Deletes a todo item by its ID.
+        
+        :param id: The ID of the todo to delete.
+        :raises: 404 error if the todo is not found.
+        """
         todo = self.get(id)
         self.todos.remove(todo)
 
